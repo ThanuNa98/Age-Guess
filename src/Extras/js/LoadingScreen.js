@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import '../css/LoadingScreen.css';
 
 const LoadingScreen = () => {
     const containerRef = useRef(null);
@@ -16,7 +17,7 @@ const LoadingScreen = () => {
 
         // Create a renderer
         const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(containerRef.current.offsetWidth, containerRef.current.offsetHeight);
         renderer.setClearColor(0xf0f0f0);
         containerRef.current.appendChild(renderer.domElement);
         rendererRef.current = renderer;
@@ -51,16 +52,14 @@ const LoadingScreen = () => {
             if (rendererRef.current) {
                 rendererRef.current.dispose();
             }
-            if (containerRef.current && containerRef.current.firstChild) {
-                containerRef.current.removeChild(containerRef.current.firstChild);
+            if (containerRef.current) {
+                containerRef.current.removeChild(renderer.domElement);
             }
         };
     }, []);
 
     return (
-        <div className="loading-screen" ref={containerRef}>
-            <div className="loading-text">Loading...</div>
-        </div>
+        <div className="loading-screen" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} ref={containerRef} />
     );
 };
 

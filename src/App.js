@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home/js/Home';
-import LoadingScreen from './Extras/LoadingScreen';
+import LoadingScreen from './Extras/js/LoadingScreen';
 import './App.css';
 
 function App() {
