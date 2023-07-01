@@ -1,0 +1,64 @@
+.user-age .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-age .input-field {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+@media (max-width: 580px) {
+    .user-age .input-container {
+        display: block;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .user-age .input-field {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+.user-age .input-field:focus {
+    border-color: #5cb85c;
+}
+
+.user-age .search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    outline: none;
+}
+
+.user-age .search-button:hover {
+    background-color: #449d44;
+}
+
+.user-age .guess-icon {
+    margin-right: 8px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

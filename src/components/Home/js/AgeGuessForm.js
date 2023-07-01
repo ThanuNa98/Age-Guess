@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
-import './style.css';
+import '../css/AgeGuessForm.css';
 
-// UserAge component
 function UserAge({ onUserSearch }) {
     const [name, setName] = useState('');
     const [tutorialText, setTutorialText] = useState('');
     const [isAnimating, setIsAnimating] = useState(true);
     const [isAnimatable, setAnimatable] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -75,11 +75,18 @@ function UserAge({ onUserSearch }) {
         }, 100);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (name.trim() !== '') {
-            onUserSearch(name);
-            setName('');
+            setIsLoading(true);
+            try {
+                await onUserSearch(name);
+                setName('');
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -100,8 +107,17 @@ function UserAge({ onUserSearch }) {
                     />
 
                     <button type="submit" className="search-button">
-                        <FontAwesomeIcon icon={faDice} className="search-icon" />
-                        Guess
+                        {isLoading ? (
+                            <>
+                                <div className="loading-dice" />
+                                <span>Guessing...</span>
+                            </>
+                        ) : (
+                            <>
+                                <FontAwesomeIcon icon={faDice} className="guess-icon" />
+                                <span>Guess</span>
+                            </>
+                        )}
                     </button>
                 </div>
             </form>
