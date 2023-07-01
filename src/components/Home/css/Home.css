@@ -11,6 +11,7 @@ body {
 .app {
     max-width: 600px;
     min-width: 300px;
+    min-height: 350px;
     width: 100%;
     margin: 20px auto;
     padding: 20px;
@@ -44,11 +45,17 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100vh;
-    background-color: #f2f2f2;
+    background-color: #e5f3df;
 
 }
+
+.site-view-normal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .site-view-data-filled {
     justify-content: flex-start;
@@ -93,14 +100,26 @@ h1 {
     text-align: center;
     margin-top: 20px;
     font-size: 18px;
+    justify-self: center;
+    align-self: center;
     color: #ffffff;
     bottom: 0;
+}
+
+@media (max-width: 580px) {
+    .footer-Area {
+        height: 40px;
+    }
+
+    .footer {
+        font-size: 16px;
+    }
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
 
     to {

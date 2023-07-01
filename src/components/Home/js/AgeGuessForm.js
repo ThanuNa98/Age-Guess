@@ -85,9 +85,17 @@ function UserAge({ onUserSearch }) {
                         ref={inputRef}
                     />
 
-                    <button type="submit" className={isAnimating ? 'guessing-button' : 'guess-button'}>
-                        <FontAwesomeIcon icon={faDice} className="search-icon" />
-                        Guess
+                    <button type="submit" className={isLoading ? 'guessing-button' : 'guess-button'}>
+                        {!isLoading ? (
+                            <text>
+                                <FontAwesomeIcon icon={faDice} className="search-icon" />
+                                Guess
+                            </text>
+                        ) : (
+                            <span>
+                                Guessing...
+                            </span>
+                        )}
                     </button>
                 </div>
             </form>
