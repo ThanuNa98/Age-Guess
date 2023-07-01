@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserAge from '../js/AgeGuessForm';
 import UserTable from '../js/UserTable';
-import UseAnimations from "react-useanimations";
-import infinity from 'react-useanimations/lib/infinity';
 import ReactLoading from 'react-loading';
 import { fetchUserAge } from '../../../utils/API';
 import '../css/Home.css'
@@ -31,18 +29,6 @@ function Home() {
         setIsLoading(false);
     };
 
-    useEffect(() => {
-        const loadData = async () => {
-            setIsLoading(true);
-
-            // Fetch initial data or perform any other data loading operations
-
-            setIsLoading(false);
-        };
-
-        loadData();
-    }, []);
-
     return (
         <div className={`site-view ${searchedUsers.length === 0 ? "site-view-normal" : "site-view-data-filled"}`}>
             <div className="app">
@@ -50,7 +36,7 @@ function Home() {
                 <UserAge onUserSearch={handleUserSearch} />
                 {isLoading ? (
                     <div className="loading">
-                        <ReactLoading type="bars" color="#077907"
+                        <ReactLoading type="bars" color="#95D99B"
                             height={150} width={75} />
                     </div>
                 ) : (

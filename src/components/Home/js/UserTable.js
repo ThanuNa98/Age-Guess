@@ -6,10 +6,10 @@ function UserTable({ users }) {
         <div className="view-Area">
             <div className="user-table">
                 <div className="title-table">
-                    <h2>Searched Users</h2>
+                    <h2>Guessed Users</h2>
                 </div>
                 {users.length === 0 ? (
-                    <p id="warn-msg">No users searched yet.</p>
+                    <p id="warn-msg">No users guessed yet.</p>
                 ) : (
                     <table>
                         <thead className='table-header'>
