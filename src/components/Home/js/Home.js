@@ -10,6 +10,7 @@ function Home() {
     const [searchedUsers, setSearchedUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+
     const handleUserSearch = async (name) => {
         setIsLoading(true);
 

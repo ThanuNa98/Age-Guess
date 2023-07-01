@@ -32,7 +32,7 @@
     border-color: #5cb85c;
 }
 
-.user-age .search-button {
+.user-age .guess-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,9 +48,26 @@
     outline: none;
 }
 
-.user-age .search-button:hover {
-    background-color: #449d44;
+.user-age .guess-button:hover {
+    background-color: #215c21;
 }
+
+.user-age .guessing-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    background-color: #03bf83;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    outline: none;
+}
+
+
 
 .user-age .guess-icon {
     margin-right: 8px;

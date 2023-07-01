@@ -106,11 +106,11 @@ function UserAge({ onUserSearch }) {
                         ref={inputRef}
                     />
 
-                    <button type="submit" className="search-button">
+                    <button type="submit" className={isLoading ? ("guessing-button") : ("guess-button")}>
                         {isLoading ? (
                             <>
                                 <div className="loading-dice" />
-                                <span>Guessing...</span>
+                                <span >Guessing...</span>
                             </>
                         ) : (
                             <>
