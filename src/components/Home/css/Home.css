@@ -60,6 +60,18 @@ h1 {
     animation: fadeIn 0.9s ease-in-out forwards;
 }
 
+@media (max-width: 580px) {
+    .site-view-normal {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .site-view-normal .app {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 
 .footer-Area {
     position: fixed;
