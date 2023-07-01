@@ -7,66 +7,52 @@ function UserAge({ onUserSearch }) {
     const [name, setName] = useState('');
     const [tutorialText, setTutorialText] = useState('');
     const [isAnimating, setIsAnimating] = useState(true);
+    const [isAnimatable, setAnimatable] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-    const [isInputFocused, setIsInputFocused] = useState(false);
+    const inputRef = useRef(null);
 
     useEffect(() => {
-        const textToType = 'Enter a name';
-        let currentIndex = 0;
+        const placeholderText = 'Enter your name';
+        const typingInterval = 150; // Adjust this value to control the typing speed
+        let currentIndex = -1;
+        let typingTimer;
 
-        const typingInterval = setInterval(() => {
-            if (currentIndex === textToType.length) {
-                clearInterval(typingInterval);
+        const typeNextCharacter = () => {
+            currentIndex++;
+            setTutorialText((prevText) => prevText + placeholderText[currentIndex]);
+            if (currentIndex === placeholderText.length - 1) {
+                clearInterval(typingTimer);
                 setTimeout(() => {
                     setTutorialText('');
-                    setIsAnimating(false);
-                    setTimeout(() => {
-                        setIsAnimating(true);
-                        startTypingAnimation();
-                    }, 1000);
-                }, 1000);
-                return;
+                    currentIndex = -1;
+                    startTypingAnimation();
+                }, 2000); // Delay before clearing the text and starting the animation again (2 seconds in this example)
             }
+        };
 
-            setTutorialText((prevText) => prevText + textToType[currentIndex]);
-            currentIndex++;
-        }, 100);
+        const startTypingAnimation = () => {
+            setIsAnimating(false);
+            setAnimatable(true);
+            typingTimer = setInterval(typeNextCharacter, typingInterval);
+        };
 
-        return () => clearInterval(typingInterval);
+        startTypingAnimation();
+
+        return () => {
+            clearInterval(typingTimer);
+        };
     }, []);
 
-    useEffect(() => {
-        if (isInputFocused) {
-            setIsAnimating(false);
-        } else {
-            setIsAnimating(true);
-            startTypingAnimation();
-        }
-    }, [isInputFocused]);
-
-    const startTypingAnimation = () => {
-        const textToType = 'Enter a name';
-        let currentIndex = 0;
-
-        const typingInterval = setInterval(() => {
-            if (currentIndex === textToType.length) {
-                clearInterval(typingInterval);
-                setTimeout(() => {
-                    setTutorialText('');
-                    setIsAnimating(false);
-                    setTimeout(() => {
-                        setIsAnimating(true);
-                        startTypingAnimation();
-                    }, 1000);
-                }, 1000);
-                return;
-            }
-
-            setTutorialText((prevText) => prevText + textToType[currentIndex]);
-            currentIndex++;
-        }, 100);
+    const handleFocus = () => {
+        setIsAnimating(false);
+        setAnimatable(false);
     };
 
+    const handleBlur = () => {
+        if (isAnimatable) {
+            setIsAnimating(true);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -82,17 +68,10 @@ function UserAge({ onUserSearch }) {
             }
         }
     };
-    const handleFocus = () => {
-        setIsInputFocused(true);
-    };
-
-    const handleBlur = () => {
-        setIsInputFocused(false);
-    };
 
     return (
         <div className="user-age">
-            <form onSubmit={handleSubmit} className={isAnimating ? 'fade-in' : ''}>
+            <form onSubmit={handleSubmit} className={isAnimatable && isAnimating && !isLoading ? 'fade-in' : ''}>
                 <div className="input-container">
                     <input
                         type="text"
@@ -103,21 +82,12 @@ function UserAge({ onUserSearch }) {
                         onFocus={handleFocus}
                         onBlur={handleBlur}
                         contentEditable
-
+                        ref={inputRef}
                     />
 
-                    <button type="submit" className={isLoading ? 'guessing-button' : 'guess-button'}>
-                        {isLoading ? (
-                            <>
-                                <div className="loading-dice" />
-                                <span>Guessing...</span>
-                            </>
-                        ) : (
-                            <>
-                                <FontAwesomeIcon icon={faDice} className="guess-icon" />
-                                <span>Guess</span>
-                            </>
-                        )}
+                    <button type="submit" className={isAnimating ? 'guessing-button' : 'guess-button'}>
+                        <FontAwesomeIcon icon={faDice} className="search-icon" />
+                        Guess
                     </button>
                 </div>
             </form>
