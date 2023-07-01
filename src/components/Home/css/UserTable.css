@@ -1,4 +1,5 @@
 .user-table {
+    margin-bottom: 40px;
     margin-top: 40px;
     max-height: 65vh;
     overflow-y: auto;
@@ -41,13 +42,13 @@
 .table-header {
     position: sticky;
     top: var(--title-table-height);
-    z-index: 999;
+    z-index: 900;
     background-color: #f2f2f2;
 }
 
 .title-table {
     position: sticky;
-    z-index: 998;
+    z-index: 890;
     top: 0;
     padding: 11.5px 0;
     background-color: #f6f6f6;

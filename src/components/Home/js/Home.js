@@ -45,7 +45,7 @@ function Home() {
     return (
         <div className={`site-view ${searchedUsers.length === 0 ? "site-view-normal" : "site-view-data-filled"}`}>
             <div className="app">
-                <h1 className="fade-in">Age Guesser</h1>
+                <h1 className="fade-in">Age Guessing Game</h1>
                 <UserAge onUserSearch={handleUserSearch} />
                 {isLoading ? (
                     <div className="loading">
