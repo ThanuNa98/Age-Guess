@@ -3,6 +3,7 @@ import UserAge from '../js/AgeGuessForm';
 import UserTable from '../js/UserTable';
 import UseAnimations from "react-useanimations";
 import infinity from 'react-useanimations/lib/infinity';
+import ReactLoading from 'react-loading';
 import { fetchUserAge } from '../../../utils/API';
 import '../css/Home.css'
 
@@ -49,8 +50,8 @@ function Home() {
                 <UserAge onUserSearch={handleUserSearch} />
                 {isLoading ? (
                     <div className="loading">
-                        <UseAnimations animation={infinity} size={56} strokeColor="#065106" />
-                        <p>Loading...</p>
+                        <ReactLoading type="bars" color="#077907"
+                            height={150} width={75} />
                     </div>
                 ) : (
                     <UserTable users={searchedUsers} />
